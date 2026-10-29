@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harmes Architecture & Design</title>
+    <title>Haroune Architecture & Design</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts: Playfair Display & Plus Jakarta Sans -->
+    <!-- Google Fonts: Playfair Display, Cormorant Garamond, Cinzel & Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
@@ -31,6 +31,8 @@
                     fontFamily: {
                         sans: ['"Plus Jakarta Sans"', 'sans-serif'],
                         serif: ['"Playfair Display"', 'serif'],
+                        cormorant: ['"Cormorant Garamond"', 'serif'],
+                        cinzel: ['"Cinzel"', 'serif'],
                     }
                 }
             }
@@ -80,7 +82,7 @@
     <header class="fixed top-0 left-0 w-full z-50 bg-brand-dark/90 backdrop-blur-md border-b border-brand-border/60 transition-all duration-300" id="navbar">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <a href="#" class="flex flex-col group">
-                <span class="font-serif text-lg md:text-xl font-bold tracking-wider text-white group-hover:text-brand-gold transition-colors">HARMES</span>
+                <span class="font-serif text-lg md:text-xl font-bold tracking-wider text-white group-hover:text-brand-gold transition-colors">HAROUNE</span>
                 <span class="text-[10px] tracking-[0.28em] text-brand-gold uppercase font-medium">Architecture & Design</span>
             </a>
 
@@ -89,7 +91,7 @@
                 <a href="#about" class="text-slate-300 hover:text-brand-gold transition-colors duration-200">À Propos</a>
                 <a href="#skills" class="text-slate-300 hover:text-brand-gold transition-colors duration-200">Compétences</a>
                 <a href="#portfolio" class="text-slate-300 hover:text-brand-gold transition-colors duration-200">Projets</a>
-                <a href="#testimonials" class="text-slate-300 hover:text-brand-gold transition-colors duration-200">Témoignages</a>
+                <a href="#contact" class="text-slate-300 hover:text-brand-gold transition-colors duration-200">Consultation</a>
                 <a href="#contact" class="px-5 py-2.5 rounded-full border border-brand-gold/50 text-brand-gold hover:bg-brand-gold hover:text-black transition-all duration-300 shadow-md shadow-brand-gold/5">
                     Prendre Rendez-vous
                 </a>
@@ -106,7 +108,7 @@
             <a href="#about" class="block text-slate-300 hover:text-brand-gold py-2">À Propos</a>
             <a href="#skills" class="block text-slate-300 hover:text-brand-gold py-2">Compétences</a>
             <a href="#portfolio" class="block text-slate-300 hover:text-brand-gold py-2">Projets</a>
-            <a href="#testimonials" class="block text-slate-300 hover:text-brand-gold py-2">Témoignages</a>
+            <a href="#contact" class="block text-slate-300 hover:text-brand-gold py-2">Consultation</a>
             <a href="#contact" class="block text-brand-gold border border-brand-gold/50 py-2.5 rounded-full mt-4">Prendre Rendez-vous</a>
         </div>
     </header>
@@ -122,14 +124,9 @@
         </div>
 
         <div class="relative z-10 max-w-5xl mx-auto px-6 text-center">
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-gold/40 bg-brand-gold/10 text-brand-gold text-xs uppercase tracking-widest mb-6">
-                <span class="w-2 h-2 rounded-full bg-brand-gold animate-pulse"></span>
-                Architecte & Designer à Alger
-            </div>
-            
             <h1 class="text-4xl sm:text-6xl md:text-7xl font-serif font-bold text-white tracking-tight leading-tight mb-6">
-                Harmes <br>
-                <span class="gold-gradient-text italic font-normal">Architecture & Design</span>
+                Haroune <br>
+                <span class="font-cormorant font-normal text-3xl sm:text-5xl md:text-6xl text-brand-goldlight tracking-[0.06em] not-italic block mt-2">Architecture & Design</span>
             </h1>
 
             <p class="max-w-3xl mx-auto text-base sm:text-lg text-brand-muted font-light leading-relaxed mb-10">
@@ -564,7 +561,7 @@
     <footer class="py-12 bg-brand-dark border-t border-brand-border/60 text-xs text-brand-muted">
         <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
-                <p class="font-serif text-sm font-bold text-white">HAROUNE AMINE ARCHITECTURE ET DESIGN</p>
+                <p class="font-serif text-sm font-bold text-white">HAROUNE ARCHITECTURE & DESIGN</p>
                 <p class="mt-1">Architecte Diplômé Master 2 - Université de Blida | Alger, Algérie</p>
             </div>
             <div class="flex items-center space-x-6 text-base">

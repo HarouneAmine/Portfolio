@@ -1,6 +1,6 @@
-# Harmes Architecture & Design
+# Haroune Architecture & Design
 
-Portfolio officiel de **Harmes Architecture et Design** (Haroune Mohamed Amine).
+Portfolio officiel de **Haroune Architecture & Design** (Haroune Mohamed Amine).
 
 ## À propos
 Cabinet d'architecture et design fondé par Haroune Mohamed Amine, architecte diplômé Master 2 (Université de Blida) cumulant près de 10 ans d'expérience dans l'étude, la conception et le suivi de projets complexes (infrastructures majeures, résidences haut standing, aménagement d'intérieur et audits énergétiques).

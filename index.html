@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harmes Architecture & Design</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Playfair Display & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0f1115',
+                            card: '#161920',
+                            border: '#262a35',
+                            gold: '#d4af37',
+                            goldlight: '#e6c280',
+                            golddark: '#a88924',
+                            muted: '#94a3b8'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0f1115;
+            color: #f1f5f9;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #ffffff 0%, #e6c280 40%, #d4af37 70%, #a88924 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gold-border-glow {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .gold-border-glow:hover {
+            border-color: rgba(212, 175, 55, 0.6);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.15);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f1115;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #262a35;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d4af37;
+        }
+    </style>
+</head>
+<body class="bg-brand-dark text-slate-100 antialiased selection:bg-brand-gold selection:text-black">
+
+    <!-- Header Navigation -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-brand-dark/90 backdrop-blur-md border-b border-brand-border/60 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="flex flex-col group">
+                <span class="font-serif text-lg md:text-xl font-bold tracking-wider text-white group-hover:text-brand-gold transition-colors">HARMES</span>
+                <span class="text-[10px] tracking-[0.28em] text-brand-gold uppercase font-medium">Architecture & Design</span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide">
+                <a href="#about" class="text-slate-300 hover:text-brand-gold transition-colors duration-200">À Propos</a>
+                <a href="#skills" class="text-slate-300 hover:text-brand-gold transition-colors duration-200">Compétences</a>
+                <a href="#portfolio" class="text-slate-300 hover:text-brand-gold transition-colors duration-200">Projets</a>
+                <a href="#testimonials" class="text-slate-300 hover:text-brand-gold transition-colors duration-200">Témoignages</a>
+                <a href="#contact" class="px-5 py-2.5 rounded-full border border-brand-gold/50 text-brand-gold hover:bg-brand-gold hover:text-black transition-all duration-300 shadow-md shadow-brand-gold/5">
+                    Prendre Rendez-vous
+                </a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobileMenuBtn" class="md:hidden text-2xl text-slate-200 hover:text-brand-gold focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Nav Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-brand-card border-b border-brand-border px-6 py-6 space-y-4 text-center">
+            <a href="#about" class="block text-slate-300 hover:text-brand-gold py-2">À Propos</a>
+            <a href="#skills" class="block text-slate-300 hover:text-brand-gold py-2">Compétences</a>
+            <a href="#portfolio" class="block text-slate-300 hover:text-brand-gold py-2">Projets</a>
+            <a href="#testimonials" class="block text-slate-300 hover:text-brand-gold py-2">Témoignages</a>
+            <a href="#contact" class="block text-brand-gold border border-brand-gold/50 py-2.5 rounded-full mt-4">Prendre Rendez-vous</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden">
+        <!-- Background Overlay Image -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2000&auto=format&fit=crop" 
+                 alt="Architectural Background" 
+                 class="w-full h-full object-cover opacity-20 filter brightness-75 scale-105 transition-transform duration-10000 hover:scale-100">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/80 to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 max-w-5xl mx-auto px-6 text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-gold/40 bg-brand-gold/10 text-brand-gold text-xs uppercase tracking-widest mb-6">
+                <span class="w-2 h-2 rounded-full bg-brand-gold animate-pulse"></span>
+                Architecte & Designer à Alger
+            </div>
+            
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-serif font-bold text-white tracking-tight leading-tight mb-6">
+                Harmes <br>
+                <span class="gold-gradient-text italic font-normal">Architecture & Design</span>
+            </h1>
+
+            <p class="max-w-3xl mx-auto text-base sm:text-lg text-brand-muted font-light leading-relaxed mb-10">
+                Concevoir des infrastructures d'envergure, des résidences privées et des espaces d'exception. Près de 10 ans d'expertise au service d'une architecture durable, innovante et maîtrisée via les technologies BIM.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#portfolio" class="w-full sm:w-auto px-8 py-4 rounded-full bg-brand-gold text-black font-semibold hover:bg-brand-goldlight transition-all duration-300 shadow-xl shadow-brand-gold/10 flex items-center justify-center gap-2">
+                    <span>Explorer nos projets</span>
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+                <a href="#contact" class="w-full sm:w-auto px-8 py-4 rounded-full border border-slate-700 bg-brand-card/60 backdrop-blur-sm text-slate-200 hover:border-brand-gold/60 transition-all duration-300 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-envelope text-brand-gold"></i>
+                    <span>Contactez-nous</span>
+                </a>
+            </div>
+
+            <!-- Quick Stats Ribbon -->
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 pt-12 border-t border-brand-border/60 text-left">
+                <div class="p-5 rounded-2xl bg-brand-card/40 border border-brand-border/40 backdrop-blur-sm">
+                    <p class="text-3xl md:text-4xl font-serif font-bold text-white">10<span class="text-brand-gold">+</span></p>
+                    <p class="text-xs text-brand-muted uppercase tracking-wider mt-1">Ans d'Expérience</p>
+                </div>
+                <div class="p-5 rounded-2xl bg-brand-card/40 border border-brand-border/40 backdrop-blur-sm">
+                    <p class="text-3xl md:text-4xl font-serif font-bold text-white">+50</p>
+                    <p class="text-xs text-brand-muted uppercase tracking-wider mt-1">Projets Réalisés en Architecture</p>
+                </div>
+                <div class="p-5 rounded-2xl bg-brand-card/40 border border-brand-border/40 backdrop-blur-sm">
+                    <p class="text-3xl md:text-4xl font-serif font-bold text-white">+50</p>
+                    <p class="text-xs text-brand-muted uppercase tracking-wider mt-1">Audits Énergétiques Réalisés</p>
+                </div>
+                <div class="p-5 rounded-2xl bg-brand-card/40 border border-brand-border/40 backdrop-blur-sm">
+                    <p class="text-2xl md:text-3xl font-serif font-bold text-white">EXPERT 3D/BIM</p>
+                    <p class="text-xs text-brand-muted uppercase tracking-wider mt-1">Modélisation & Suivi Technique</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-brand-card/50 relative border-t border-b border-brand-border/60">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Profile Image & Badge Column -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative rounded-2xl overflow-hidden border border-brand-border gold-border-glow shadow-2xl group">
+                        <img src="assets/images/profile.jpg" 
+                             alt="Haroune Mohamed Amine - Architecte" 
+                             class="w-full h-[500px] sm:h-[560px] object-cover object-top transition-all duration-700">
+                        
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent opacity-85"></div>
+                        
+                        <div class="absolute bottom-6 left-6 right-6 p-5 rounded-xl bg-brand-dark/90 backdrop-blur-md border border-brand-border/80 shadow-lg">
+                            <h3 class="text-lg font-serif font-bold text-white">Haroune Mohamed Amine</h3>
+                            <p class="text-xs text-brand-gold uppercase tracking-wider mt-0.5">Architecte Fondateur & Lead Designer</p>
+                            <p class="text-xs text-slate-400 mt-2 flex items-center gap-2">
+                                <i class="fa-solid fa-graduation-cap text-brand-gold"></i>
+                                <span>Master 2 Architecture - Université de Blida</span>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Decorative Golden Frame Background -->
+                    <div class="absolute -bottom-4 -right-4 w-full h-full border border-brand-gold/30 rounded-2xl -z-10 hidden sm:block"></div>
+                </div>
+
+                <!-- Bio Content Column -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="space-y-2">
+                        <span class="text-xs font-semibold uppercase tracking-widest text-brand-gold">À Propos de Moi</span>
+                        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-white">Rigueur technique, innovation & esthétique.</h2>
+                    </div>
+
+                    <div class="space-y-4 text-slate-300 text-sm sm:text-base leading-relaxed font-light">
+                        <p class="p-5 rounded-2xl bg-brand-dark/70 border-l-4 border-brand-gold italic text-slate-200 shadow-inner">
+                            « Architecte diplômé d'un Master 2 de l'Université de Blida, je cumule près de 10 ans d'expérience dans l'étude et le suivi de projets complexes. Mon parcours, marqué par plus de cinq années au sein de la filiale GCB de Sonatrach et trois années en Auto-Entrepreneur indépendant, m'a permis de piloter des infrastructures majeures comme le centre d'entraînement du MCA à Zéralda ou le pôle administratif de Sidi Rezine. Aujourd'hui architecte indépendant, je mets ma rigueur technique et ma maîtrise des outils BIM et de visualisation (AutoCAD, Revit, SketchUp, Lumion, Enscape) au service de projets innovants et durables. »
+                        </p>
+                        <p>
+                            Mon approche se caractérise par une symbiose parfaite entre le contrôle technique rigoureux du chantier et une créativité contemporaine épurée. Basé à Alger, j'œuvre avec dynamisme sur l'ensemble du territoire national et je suis pleinement ouvert aux collaborations et projets à l'international (conception architecturale, modélisation BIM à distance, suivi technique et consultations).
+                        </p>
+                    </div>
+
+                    <!-- Highlight Badges -->
+                    <div class="pt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+                        <div class="p-4 rounded-xl bg-brand-dark/60 border border-brand-border/60 flex flex-col gap-1">
+                            <i class="fa-solid fa-building-columns text-brand-gold text-lg"></i>
+                            <span class="font-semibold text-white">Grandes Infrastructures</span>
+                            <span class="text-brand-muted text-[11px]">GCB Sonatrach, MCA Zéralda</span>
+                        </div>
+                        <div class="p-4 rounded-xl bg-brand-dark/60 border border-brand-border/60 flex flex-col gap-1">
+                            <i class="fa-solid fa-cubes text-brand-gold text-lg"></i>
+                            <span class="font-semibold text-white">Maîtrise BIM 3D</span>
+                            <span class="text-brand-muted text-[11px]">Revit, AutoCAD, Enscape</span>
+                        </div>
+                        <div class="p-4 rounded-xl bg-brand-dark/60 border border-brand-border/60 flex flex-col gap-1">
+                            <i class="fa-solid fa-compass-drafting text-brand-gold text-lg"></i>
+                            <span class="font-semibold text-white">Design & Intérieur</span>
+                            <span class="text-brand-muted text-[11px]">Aménagements Luxe Sur-Mesure</span>
+                        </div>
+                        <div class="p-4 rounded-xl bg-brand-dark/60 border border-brand-border/60 flex flex-col gap-1">
+                            <i class="fa-solid fa-earth-americas text-brand-gold text-lg"></i>
+                            <span class="font-semibold text-white">National & International</span>
+                            <span class="text-brand-muted text-[11px]">Algérie & Collaborations Globales</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills & Tools Section -->
+    <section id="skills" class="py-24 bg-brand-dark">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-xs font-semibold uppercase tracking-widest text-brand-gold">Expertise Technique</span>
+                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-white mt-2">Compétences & Logiciels BIM</h2>
+                <p class="text-brand-muted text-sm mt-3">Un workflow technologique complet garantissant une précision absolue de la conception au suivi de chantier.</p>
+            </div>
+
+            <!-- Software Tools Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-16">
+                <div class="p-6 rounded-2xl bg-brand-card border border-brand-border/60 text-center hover:border-brand-gold/50 transition-all duration-300 group">
+                    <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-red-500/10 text-red-400 flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform">
+                        CAD
+                    </div>
+                    <h3 class="font-semibold text-white text-sm">AutoCAD</h3>
+                    <p class="text-[11px] text-brand-muted mt-1">Plans 2D / Exécution</p>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-brand-card border border-brand-border/60 text-center hover:border-brand-gold/50 transition-all duration-300 group">
+                    <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform">
+                        RVT
+                    </div>
+                    <h3 class="font-semibold text-white text-sm">Revit</h3>
+                    <p class="text-[11px] text-brand-muted mt-1">Modélisation BIM</p>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-brand-card border border-brand-border/60 text-center hover:border-brand-gold/50 transition-all duration-300 group">
+                    <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform">
+                        SKP
+                    </div>
+                    <h3 class="font-semibold text-white text-sm">SketchUp</h3>
+                    <p class="text-[11px] text-brand-muted mt-1">Volumes 3D</p>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-brand-card border border-brand-border/60 text-center hover:border-brand-gold/50 transition-all duration-300 group">
+                    <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform">
+                        LUM
+                    </div>
+                    <h3 class="font-semibold text-white text-sm">Lumion</h3>
+                    <p class="text-[11px] text-brand-muted mt-1">Rendu Photoréaliste</p>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-brand-card border border-brand-border/60 text-center hover:border-brand-gold/50 transition-all duration-300 group">
+                    <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform">
+                        ENS
+                    </div>
+                    <h3 class="font-semibold text-white text-sm">Enscape</h3>
+                    <p class="text-[11px] text-brand-muted mt-1">Visualisation Temps Réel</p>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-brand-card border border-brand-border/60 text-center hover:border-brand-gold/50 transition-all duration-300 group">
+                    <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-sky-500/10 text-sky-400 flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform">
+                        PSD
+                    </div>
+                    <h3 class="font-semibold text-white text-sm">Photoshop</h3>
+                    <p class="text-[11px] text-brand-muted mt-1">Post-Production</p>
+                </div>
+            </div>
+
+            <!-- Core Competencies Pillars -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="p-8 rounded-2xl bg-brand-card border border-brand-border/60 hover:border-brand-gold/40 transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-brand-gold/10 text-brand-gold flex items-center justify-center text-xl mb-6">
+                        <i class="fa-solid fa-pencil-ruler"></i>
+                    </div>
+                    <h3 class="text-xl font-serif font-bold text-white mb-3">Étude & Conception Globale</h3>
+                    <p class="text-brand-muted text-sm leading-relaxed">
+                        De l'esquisse conceptuelle jusqu'au dossier de permis de construire et plans de détail. Analyse rigoureuse des besoins et contraintes du site.
+                    </p>
+                </div>
+
+                <div class="p-8 rounded-2xl bg-brand-card border border-brand-border/60 hover:border-brand-gold/40 transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-brand-gold/10 text-brand-gold flex items-center justify-center text-xl mb-6">
+                        <i class="fa-solid fa-helmet-safety"></i>
+                    </div>
+                    <h3 class="text-xl font-serif font-bold text-white mb-3">Suivi & Pilotage de Chantier</h3>
+                    <p class="text-brand-muted text-sm leading-relaxed">
+                        Plus de 8 ans d'expérience terrain dans le suivi technique, le respect des normes de sécurité et la coordination des corps d'état secondaires.
+                    </p>
+                </div>
+
+                <div class="p-8 rounded-2xl bg-brand-card border border-brand-border/60 hover:border-brand-gold/40 transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-brand-gold/10 text-brand-gold flex items-center justify-center text-xl mb-6">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+                    <h3 class="text-xl font-serif font-bold text-white mb-3">Modélisation BIM & Design 3D</h3>
+                    <p class="text-brand-muted text-sm leading-relaxed">
+                        Création de maquettes numériques intelligentes, détection de collisions, visites virtuelles immersives et animations haute définition.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section (10 Projects) -->
+    <section id="portfolio" class="py-24 bg-brand-card/30 border-t border-brand-border/60">
+        <div class="max-w-7xl mx-auto px-6">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                <div>
+                    <span class="text-xs font-semibold uppercase tracking-widest text-brand-gold">Portfolio d'Exception</span>
+                    <h2 class="text-3xl sm:text-4xl font-serif font-bold text-white mt-1">10 Projets Majeurs</h2>
+                </div>
+
+                <!-- Filter Buttons -->
+                <div class="flex flex-wrap gap-2 text-xs">
+                    <button class="filter-btn active px-4 py-2 rounded-full bg-brand-gold text-black font-semibold transition-all" data-filter="all">Tous (10)</button>
+                    <button class="filter-btn px-4 py-2 rounded-full bg-brand-card border border-brand-border text-slate-300 hover:text-white transition-all" data-filter="infrastructure">Infrastructures</button>
+                    <button class="filter-btn px-4 py-2 rounded-full bg-brand-card border border-brand-border text-slate-300 hover:text-white transition-all" data-filter="residentiel">Résidentiel</button>
+                    <button class="filter-btn px-4 py-2 rounded-full bg-brand-card border border-brand-border text-slate-300 hover:text-white transition-all" data-filter="interieur">Design Intérieur</button>
+                    <button class="filter-btn px-4 py-2 rounded-full bg-brand-card border border-brand-border text-slate-300 hover:text-white transition-all" data-filter="tertiaire">Tertiaire</button>
+                </div>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projectsGrid">
+                <!-- Projects dynamically inserted via JavaScript -->
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-24 bg-brand-dark relative border-t border-brand-border/60">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-xs font-semibold uppercase tracking-widest text-brand-gold">Confiance & Rigueur</span>
+                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-white mt-2">Témoignages & Distinctions</h2>
+                <p class="text-brand-muted text-sm mt-3">Ce que disent les maîtres d'ouvrage et collaborateurs de ma démarche professionnelle.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="p-8 rounded-2xl bg-brand-card border border-brand-border/60 relative flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-brand-gold text-xs space-x-1 mb-4">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-300 text-sm italic leading-relaxed">
+                            « La rigueur technique d'Amine sur le chantier du centre d'entraînement du MCA à Zéralda a été exemplaire. Sa maîtrise BIM a permis d'éviter de nombreuses erreurs d'exécution. »
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-6 border-t border-brand-border/40 flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-brand-gold/20 text-brand-gold flex items-center justify-center font-bold text-sm">
+                            GCB
+                        </div>
+                        <div>
+                            <p class="text-white font-semibold text-sm">Direction de Projet GCB</p>
+                            <p class="text-xs text-brand-muted">Filiale Sonatrach</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="p-8 rounded-2xl bg-brand-card border border-brand-border/60 relative flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-brand-gold text-xs space-x-1 mb-4">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-300 text-sm italic leading-relaxed">
+                            « Un travail d'architecture d'intérieur remarquable pour notre villa à Hydra. Il a su capter exactement nos attentes en créant des volumes lumineux et raffinés. »
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-6 border-t border-brand-border/40 flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-brand-gold/20 text-brand-gold flex items-center justify-center font-bold text-sm">
+                            HA
+                        </div>
+                        <div>
+                            <p class="text-white font-semibold text-sm">Client Privé</p>
+                            <p class="text-xs text-brand-muted">Résidence Hydra, Alger</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="p-8 rounded-2xl bg-brand-card border border-brand-border/60 relative flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-brand-gold text-xs space-x-1 mb-4">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-300 text-sm italic leading-relaxed">
+                            « Collaborer avec Haroune Amine garantit la sécurité d'un suivi sans faille et d'un rendu 3D d'une fidélité impressionnante avant même le premier coup de pioche. »
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-6 border-t border-brand-border/40 flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-brand-gold/20 text-brand-gold flex items-center justify-center font-bold text-sm">
+                            SR
+                        </div>
+                        <div>
+                            <p class="text-white font-semibold text-sm">Responsable Infrastructure</p>
+                            <p class="text-xs text-brand-muted">Pôle Sidi Rezine</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Devis Section -->
+    <section id="contact" class="py-24 bg-brand-card/50 relative border-t border-brand-border/60">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <!-- Contact Info Column -->
+                <div class="lg:col-span-5 space-y-8">
+                    <div>
+                        <span class="text-xs font-semibold uppercase tracking-widest text-brand-gold">Contact & Consultation</span>
+                        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-white mt-2">Parlons de votre projet.</h2>
+                        <p class="text-brand-muted text-sm mt-3 leading-relaxed">
+                            Que ce soit pour une infrastructure d'envergure, une villa de luxe, un aménagement d'intérieur ou une mission de suivi et BIM à Alger, à travers toute l'Algérie ou à l'international, je vous réponds sous 24h.
+                        </p>
+                    </div>
+
+                    <div class="space-y-4 text-sm">
+                        <!-- Location -->
+                        <div class="flex items-start gap-4 p-4 rounded-xl bg-brand-dark border border-brand-border/60">
+                            <div class="w-11 h-11 rounded-xl bg-brand-gold/10 text-brand-gold flex items-center justify-center shrink-0 text-lg">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-brand-muted uppercase tracking-wider">Localisation</p>
+                                <p class="text-white font-medium mt-0.5">Alger, Algérie</p>
+                            </div>
+                        </div>
+
+                        <!-- Phone -->
+                        <div class="flex items-start gap-4 p-4 rounded-xl bg-brand-dark border border-brand-border/60">
+                            <div class="w-11 h-11 rounded-xl bg-brand-gold/10 text-brand-gold flex items-center justify-center shrink-0 text-lg">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-brand-muted uppercase tracking-wider">Téléphone Direct</p>
+                                <a href="tel:0556993813" class="text-white hover:text-brand-gold font-medium mt-0.5 block transition-colors">
+                                    0556 99 38 13
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="flex items-start gap-4 p-4 rounded-xl bg-brand-dark border border-brand-border/60">
+                            <div class="w-11 h-11 rounded-xl bg-brand-gold/10 text-brand-gold flex items-center justify-center shrink-0 text-lg">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-brand-muted uppercase tracking-wider">Adresse E-mail</p>
+                                <a href="mailto:medamineharoune@gmail.com" class="text-white hover:text-brand-gold font-medium mt-0.5 block transition-colors">
+                                    medamineharoune@gmail.com
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Direct WhatsApp Button -->
+                        <a href="https://wa.me/213556993813" target="_blank" class="w-full p-4 rounded-xl bg-emerald-600/20 border border-emerald-500/40 text-emerald-400 hover:bg-emerald-600 hover:text-white transition-all flex items-center justify-center gap-3 font-medium text-sm">
+                            <i class="fa-brands fa-whatsapp text-lg"></i>
+                            <span>Discuter directement sur WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Form Column -->
+                <div class="lg:col-span-7 bg-brand-dark p-8 rounded-3xl border border-brand-border/80 relative shadow-2xl">
+                    <form id="contactForm" class="space-y-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs uppercase tracking-wider text-brand-muted mb-2">Nom & Prénom</label>
+                                <input type="text" required class="w-full bg-brand-card border border-brand-border rounded-xl px-4 py-3.5 text-white text-sm focus:outline-none focus:border-brand-gold transition-colors" placeholder="Ex: Karim Benali">
+                            </div>
+                            <div>
+                                <label class="block text-xs uppercase tracking-wider text-brand-muted mb-2">Numéro de Téléphone</label>
+                                <input type="tel" required class="w-full bg-brand-card border border-brand-border rounded-xl px-4 py-3.5 text-white text-sm focus:outline-none focus:border-brand-gold transition-colors" placeholder="Ex: 0550 00 00 00">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs uppercase tracking-wider text-brand-muted mb-2">Adresse E-mail</label>
+                            <input type="email" required class="w-full bg-brand-card border border-brand-border rounded-xl px-4 py-3.5 text-white text-sm focus:outline-none focus:border-brand-gold transition-colors" placeholder="votre.email@domaine.com">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs uppercase tracking-wider text-brand-muted mb-2">Type de Projet</label>
+                            <select class="w-full bg-brand-card border border-brand-border rounded-xl px-4 py-3.5 text-white text-sm focus:outline-none focus:border-brand-gold transition-colors">
+                                <option>Infrastructures Public / Étatique</option>
+                                <option>Villa Luxueuse & Résidence Privée</option>
+                                <option>Design & Architecture d'Intérieur</option>
+                                <option>Siège Tertiaire / Bureaux</option>
+                                <option>Rénovation & Restructuration</option>
+                                <option>Consultation & Expertise BIM</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs uppercase tracking-wider text-brand-muted mb-2">Détails de votre Message</label>
+                            <textarea rows="4" required class="w-full bg-brand-card border border-brand-border rounded-xl px-4 py-3.5 text-white text-sm focus:outline-none focus:border-brand-gold transition-colors" placeholder="Décrivez votre projet, localisation et délais souhaités..."></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-4 rounded-xl bg-brand-gold text-black font-semibold hover:bg-brand-goldlight transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-brand-gold/10">
+                            <span>Envoyer la Demande</span>
+                            <i class="fa-solid fa-paper-plane text-xs"></i>
+                        </button>
+                    </form>
+
+                    <!-- Form Confirmation Toast Overlay -->
+                    <div id="formStatus" class="hidden absolute inset-0 bg-brand-dark/95 rounded-3xl flex flex-col items-center justify-center text-center p-8 backdrop-blur-md">
+                        <div class="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-3xl mb-4">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                        <h3 class="text-2xl font-serif font-bold text-white mb-2">Demande Transmise !</h3>
+                        <p class="text-brand-muted text-sm max-w-sm mb-6">Merci pour votre message. Haroune Amine étudiera votre demande et vous recontactera rapidement.</p>
+                        <button onclick="resetForm()" class="px-6 py-2.5 rounded-full border border-brand-gold/50 text-brand-gold text-xs uppercase tracking-wider hover:bg-brand-gold hover:text-black transition-all">
+                            Envoyer un autre message
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-brand-dark border-t border-brand-border/60 text-xs text-brand-muted">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
+                <p class="font-serif text-sm font-bold text-white">HAROUNE AMINE ARCHITECTURE ET DESIGN</p>
+                <p class="mt-1">Architecte Diplômé Master 2 - Université de Blida | Alger, Algérie</p>
+            </div>
+            <div class="flex items-center space-x-6 text-base">
+                <a href="#" class="hover:text-brand-gold transition-colors"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#" class="hover:text-brand-gold transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                <a href="mailto:medamineharoune@gmail.com" class="hover:text-brand-gold transition-colors"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Project Detail Interactive Modal -->
+    <div id="projectModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4 sm:p-6">
+        <div class="bg-brand-card border border-brand-border/80 rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto relative shadow-2xl">
+            <!-- Close Button -->
+            <button id="closeModalBtn" class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-brand-dark/90 text-white hover:text-brand-gold flex items-center justify-center border border-brand-border">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <div id="modalContent">
+                <!-- Dynamically populated via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript logic & 10 Projects Data -->
+    <script>
+        const projects = [
+            {
+                id: 1,
+                title: "Centre d'Entraînement du MCA à Zéralda",
+                category: "infrastructure",
+                categoryLabel: "Infrastructure Sportive",
+                location: "Zéralda, Alger",
+                year: "2021-2024",
+                client: "Mouloudia Club d'Alger / GCB",
+                role: "Suivi d'Exécution & Coordination BIM",
+                image: "https://images.unsplash.com/photo-1577495508048-b635879837f1?q=80&w=1000&auto=format&fit=crop",
+                description: "Étude et suivi de réalisation des infrastructures majeures du centre d'entraînement moderne du Mouloudia Club d'Alger (MCA) à Zéralda. Intégration des terrains de football aux normes FIFA, pôle médical de récupération, bloc d'hébergement pour athlètes et bâtiment administratif.",
+                details: [
+                    "Complexe d'envergure nationale",
+                    "Pilotage BIM et coordination des sous-traitants (GCB)",
+                    "Supervision technique des finitions et des équipements sportifs"
+                ]
+            },
+            {
+                id: 2,
+                title: "Pôle Administratif de Sidi Rezine",
+                category: "tertiaire",
+                categoryLabel: "Bâtiment Tertiaire & Public",
+                location: "Sidi Rezine, Alger",
+                year: "2022",
+                client: "Secteur Public / Sonatrach GCB",
+                role: "Conception & Suivi d'Exécution",
+                image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000&auto=format&fit=crop",
+                description: "Projet d'infrastructure administrative moderne comprenant des espaces de bureaux ergonomiques, auditorium central, salles de conférence et guichets d'accueil public. Optimisation bioclimatique de la façade.",
+                details: [
+                    "Gestion fluide des accès et sécurité",
+                    "Isolation acoustique et thermique renforcée",
+                    "Conception sur Revit avec rendu 3D Lumion"
+                ]
+            },
+            {
+                id: 3,
+                title: "Villa Résidentielle de Luxe - Hydra",
+                category: "residentiel",
+                categoryLabel: "Résidentiel & Intérieur Luxe",
+                location: "Hydra, Alger",
+                year: "2024",
+                client: "Client Privé",
+                role: "Conception, Design Intérieur & Suivi",
+                image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1000&auto=format&fit=crop",
+                description: "Villa haut de gamme combinant lignes contemporaines épurées et matériaux nobles : marbre blanc veiné, parements en bois d'inlandsis et suspensions lumineuses sur-mesure. Traitement soigné des grands salons de réception.",
+                details: [
+                    "Design d'intérieur complet avec aménagement sur-mesure",
+                    "Éclairage scénographique intégré Enscape",
+                    "Intégration d'une piscine miroir et jardins paysagers"
+                ]
+            },
+            {
+                id: 4,
+                title: "Complexe Résidentiel & Commercial",
+                category: "residentiel",
+                categoryLabel: "Usage Mixte",
+                location: "Chéraga, Alger",
+                year: "2023",
+                client: "Promoteur Immobiler",
+                role: "Chef de Projet Architecte",
+                image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=1000&auto=format&fit=crop",
+                description: "Ensemble immobilier comprenant des logements haut standing dans les étages et une socle commercial dynamique en rez-de-chaussée. Gestion équilibrée des flux résidents et visiteurs.",
+                details: [
+                    "Parkings souterrains sur 2 niveaux",
+                    "Insolation optimale de tous les appartements",
+                    "Façades ventilées modernes"
+                ]
+            },
+            {
+                id: 5,
+                title: "Aménagement Intérieur Penthouses & Lofts",
+                category: "interieur",
+                categoryLabel: "Design d'Intérieur High-End",
+                location: "Sidi Yahia, Alger",
+                year: "2023",
+                client: "Privé",
+                role: "Architecte d'Intérieur",
+                image: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?q=80&w=1000&auto=format&fit=crop",
+                description: "Transformation intégrale d'un penthouse en duplex. Création de volumes ouverts sous plafond, cuisine américaine intégrée en pierre sombre et suite parentale panoramique.",
+                details: [
+                    "Mobilier italien sur-mesure",
+                    "Domotique centralisée",
+                    "Suite parentale avec dressing d'exception"
+                ]
+            },
+            {
+                id: 6,
+                title: "Siège Social d'Entreprise - Bab Ezzouar",
+                category: "tertiaire",
+                categoryLabel: "Immeuble de Bureaux",
+                location: "Bab Ezzouar, Alger",
+                year: "2022",
+                client: "Groupe Tertiaire",
+                role: "Étude d'Architecture & BIM",
+                image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1000&auto=format&fit=crop",
+                description: "Bâtiment de bureaux R+5 avec façade mur-rideau performante. Conception d'espaces de travail flexibles (Flex-Office), salles de réunion connectées et terrasse panoramique pour les collaborateurs.",
+                details: [
+                    "Certification énergétique visée",
+                    "Espaces de coworking modulables",
+                    "Maquette numérique BIM sous Revit"
+                ]
+            },
+            {
+                id: 7,
+                title: "Rénovation Patrimoniale & Modernisation",
+                category: "infrastructure",
+                categoryLabel: "Réhabilitation",
+                location: "Alger Centre",
+                year: "2021",
+                client: "Institutionnel",
+                role: "Architecte Conseil",
+                image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1000&auto=format&fit=crop",
+                description: "Rénovation lourde préservant le cachet architectural historique tout en intégrant des technologies modernes de climatisation encastrée et de confort acoustique.",
+                details: [
+                    "Consolidation structurale",
+                    "Restauration des détails néo-mauresques",
+                    "Mise aux normes de sécurité incendie"
+                ]
+            },
+            {
+                id: 8,
+                title: "Centre Culturel & Salle d'Exposition",
+                category: "infrastructure",
+                categoryLabel: "Équipement Culturel",
+                location: "Blida",
+                year: "2020",
+                client: "Collectivité Publique",
+                role: "Conception & Esquisses",
+                image: "https://images.unsplash.com/photo-1518998053901-5348d3961a04?q=80&w=1000&auto=format&fit=crop",
+                description: "Espace d'exposition modulable destiné aux arts visuels et conférences. Utilisation de la lumière naturelle zénithale contrôlée pour sublimer les œuvres présentées.",
+                details: [
+                    "Acoustique de salle optimisée",
+                    "Puits de lumière directionnels",
+                    "Accessibilité PMR universelle"
+                ]
+            },
+            {
+                id: 9,
+                title: "Eco-Lodge & Espace Paysager Durables",
+                category: "residentiel",
+                categoryLabel: "Architecture Écologique",
+                location: "Tipaza",
+                year: "2023",
+                client: "Projet Touristique Privé",
+                role: "Conception Bioclimatique",
+                image: "https://images.unsplash.com/photo-1587061949409-02df41d5e562?q=80&w=1000&auto=format&fit=crop",
+                description: "Ensemble de pavillons d'hébergement intégrés dans un site boisé côtier. Utilisation de matériaux biosourcés et ventilation naturelle croisée.",
+                details: [
+                    "Impact paysager minimal",
+                    "Panneaux solaires intégrés",
+                    "Matériaux locaux et durables"
+                ]
+            },
+            {
+                id: 10,
+                title: "Restaurant & Lounge Design Modernist",
+                category: "interieur",
+                categoryLabel: "Design Commercial CHR",
+                location: "Draria, Alger",
+                year: "2024",
+                client: "Restaurateur",
+                role: "Architecte d'Intérieur",
+                image: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1000&auto=format&fit=crop",
+                description: "Aménagement d'un restaurant gastronomique. Ambiances lumineuses feutrées, séparation des tables par des moucharabiehs contemporains en métal doré et bar en marbre noir.",
+                details: [
+                    "Luminaires sur-mesure",
+                    "Circulation fluide en salle et cuisine pro",
+                    "Rendu 3D immersif Lumion"
+                ]
+            }
+        ];
+
+        // Render Projects Grid
+        const projectsGrid = document.getElementById('projectsGrid');
+
+        function renderProjects(filter = 'all') {
+            projectsGrid.innerHTML = '';
+            
+            const filtered = filter === 'all' 
+                ? projects 
+                : projects.filter(p => p.category === filter);
+
+            filtered.forEach(project => {
+                const card = document.createElement('div');
+                card.className = "group bg-brand-card border border-brand-border/70 rounded-2xl overflow-hidden shadow-xl hover:border-brand-gold/60 transition-all duration-300 flex flex-col cursor-pointer";
+                card.onclick = () => openModal(project.id);
+
+                card.innerHTML = `
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent opacity-85"></div>
+                        <span class="absolute top-4 left-4 text-[10px] uppercase tracking-wider px-3 py-1 rounded-full bg-brand-dark/90 backdrop-blur-md text-brand-gold border border-brand-gold/30">
+                            ${project.categoryLabel}
+                        </span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <p class="text-xs text-brand-muted flex items-center gap-1 mb-1">
+                                <i class="fa-solid fa-location-dot text-brand-gold text-[10px]"></i> ${project.location}
+                            </p>
+                            <h3 class="text-lg font-serif font-bold text-white group-hover:text-brand-gold transition-colors">${project.title}</h3>
+                            <p class="text-xs text-slate-400 mt-2 line-clamp-2">${project.description}</p>
+                        </div>
+                        <div class="pt-4 mt-4 border-t border-brand-border/50 flex items-center justify-between text-xs text-brand-muted">
+                            <span><i class="fa-regular fa-calendar mr-1"></i> ${project.year}</span>
+                            <span class="text-brand-gold group-hover:translate-x-1 transition-transform flex items-center gap-1 font-medium">
+                                Voir Fiche <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </span>
+                        </div>
+                    </div>
+                `;
+                projectsGrid.appendChild(card);
+            });
+        }
+
+        // Filter Logic
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.filter-btn').forEach(b => {
+                    b.classList.remove('bg-brand-gold', 'text-black', 'font-semibold');
+                    b.classList.add('bg-brand-card', 'text-slate-300');
+                });
+                e.target.classList.remove('bg-brand-card', 'text-slate-300');
+                e.target.classList.add('bg-brand-gold', 'text-black', 'font-semibold');
+                renderProjects(e.target.dataset.filter);
+            });
+        });
+
+        // Modal Controls
+        const modal = document.getElementById('projectModal');
+        const modalContent = document.getElementById('modalContent');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+
+        function openModal(projectId) {
+            const project = projects.find(p => p.id === projectId);
+            if (!project) return;
+
+            modalContent.innerHTML = `
+                <div class="relative h-72 sm:h-96">
+                    <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-brand-card/40 to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 right-6">
+                        <span class="text-xs uppercase tracking-widest px-3 py-1 rounded-full bg-brand-gold text-black font-semibold">
+                            ${project.categoryLabel}
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-serif font-bold text-white mt-2">${project.title}</h2>
+                        <p class="text-xs text-slate-300 mt-1"><i class="fa-solid fa-location-dot text-brand-gold mr-1"></i> ${project.location}</p>
+                    </div>
+                </div>
+
+                <div class="p-6 sm:p-8 space-y-6">
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 p-4 rounded-xl bg-brand-dark/70 border border-brand-border/60 text-xs">
+                        <div>
+                            <span class="text-brand-muted block">Année</span>
+                            <span class="text-white font-semibold">${project.year}</span>
+                        </div>
+                        <div>
+                            <span class="text-brand-muted block">Maître d'Ouvrage</span>
+                            <span class="text-white font-semibold">${project.client}</span>
+                        </div>
+                        <div class="col-span-2 sm:col-span-1">
+                            <span class="text-brand-muted block">Rôle</span>
+                            <span class="text-brand-gold font-semibold">${project.role}</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="text-xs font-semibold text-brand-gold uppercase tracking-widest mb-2">Présentation Détaillée</h4>
+                        <p class="text-slate-300 text-sm leading-relaxed">${project.description}</p>
+                    </div>
+
+                    <div>
+                        <h4 class="text-xs font-semibold text-brand-gold uppercase tracking-widest mb-2">Points Forts du Projet</h4>
+                        <ul class="space-y-2">
+                            ${project.details.map(detail => `
+                                <li class="text-xs text-slate-300 flex items-center gap-2">
+                                    <i class="fa-solid fa-check text-brand-gold"></i>
+                                    <span>${detail}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+
+                    <div class="pt-4 border-t border-brand-border flex justify-end">
+                        <a href="#contact" onclick="closeModal()" class="px-6 py-2.5 rounded-full bg-brand-gold text-black font-semibold text-xs hover:bg-brand-goldlight transition-all">
+                            Demander une étude similaire
+                        </a>
+                    </div>
+                </div>
+            `;
+
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        closeModalBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        // Mobile Navigation Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Form Submission Simulation
+        const contactForm = document.getElementById('contactForm');
+        const formStatus = document.getElementById('formStatus');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            formStatus.classList.remove('hidden');
+        });
+
+        function resetForm() {
+            contactForm.reset();
+            formStatus.classList.add('hidden');
+        }
+
+        // Initialize on load
+        window.onload = function() {
+            renderProjects('all');
+        };
+    </script>
+</body>
+</html>
